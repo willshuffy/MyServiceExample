@@ -1,5 +1,6 @@
 package com.willshuffyproject.myserviceexample
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when(v.id){
 
             R.id.btn_start_service ->{
-
+                val mStartServiceIntent = Intent(this@MainActivity, MyService::class.java)
+                startService(mStartServiceIntent)
             }
 
             R.id.btn_start_intent_service ->{
