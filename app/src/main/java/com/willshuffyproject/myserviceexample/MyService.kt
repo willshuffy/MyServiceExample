@@ -4,6 +4,9 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import android.util.Log
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.UnsupportedOperationException
 
 class MyService : Service() {
@@ -17,7 +20,17 @@ class MyService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Log.d(TAG, "onStartCommand: ")
+        Log.d(TAG, "Service dijalankan...")
+        GlobalScope.launch{
+            delay(3000)
+            stopSelf()
+            Log.d(TAG, "Service dihentikan")
+        }
         return START_STICKY
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy: ")
     }
 }
